@@ -177,6 +177,12 @@
             return false;
         }
 
+        public bool TryGetLayoutFormatter<T>(out ILayoutFormatter<T> formatter)
+            where T : Layout
+        {
+            throw new NotImplementedException();
+        }
+
 
         class FormatScanner :
             IImplementedType

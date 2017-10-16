@@ -79,5 +79,15 @@
         /// <typeparam name="T">The schema type</typeparam>
         /// <returns>A concrete type which backs the schema type</returns>
         Type GetImplementationType<T>();
+
+        bool TryGetLayoutFormatter<T>(out ILayoutFormatter<T> formatter)
+            where T : Layout;
+    }
+
+
+    public interface ILayoutFormatter<in TLayout>
+        where TLayout : Layout
+    {
+        void Format(FormatContext context, TLayout layout);
     }
 }
