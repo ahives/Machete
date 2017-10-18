@@ -6,7 +6,7 @@ namespace Machete.HL7.Tests
 
 
     public class Selection_Specs :
-        HL7MacheteTestHarness<MSH, HL7Entity>
+        HL7MacheteTestHarness<MSH, HL7Entity, HL7Layout>
     {
         [Test]
         public void Should_be_able_to_conditionally_parse()

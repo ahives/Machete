@@ -21,6 +21,7 @@
         readonly IDictionary<Type, ILayoutParserFactory> _layouts;
         IEntityTranslateFactoryProvider<TSchema> _entityTranslateFactoryProvider;
         readonly ITranslateFactoryProvider<TSchema> _translateFactoryProvider;
+        readonly Dictionary<Type, ILayoutFormatter> _layoutFormatters;
 
         public SchemaBuilder(IEntitySelectorFactory entitySelectorFactory)
         {
@@ -29,6 +30,7 @@
             _entityConverters = new Dictionary<Type, IEntityConverter>();
             _entityFormatters = new Dictionary<Type, IEntityFormatter>();
             _layouts = new Dictionary<Type, ILayoutParserFactory>();
+            _layoutFormatters = new Dictionary<Type, ILayoutFormatter>();
 
             _implementationBuilder = new DynamicImplementationBuilder();
             _entityTranslateFactoryProvider = new SchemaEntityTranslateFactoryProvider<TSchema>();
@@ -96,6 +98,12 @@
             _entityFormatters[formatter.EntityType] = formatter;
         }
 
+        public void Add<T>(ILayoutFormatter<T> formatter)
+            where T : Layout
+        {
+            _layoutFormatters[formatter.LayoutType] = formatter;
+        }
+
         public void SetTranslateFactoryProvider(IEntityTranslateFactoryProvider<TSchema> entityTranslateFactoryProvider)
         {
             _entityTranslateFactoryProvider = entityTranslateFactoryProvider;
@@ -112,8 +120,7 @@
             var entityTypeSelector = _entitySelectorFactory.Build();
 
             return new Schema<TSchema>(_entityConverters.Values, _entityFormatters.Values, _layouts.Values, entityTypeSelector, _implementationBuilder,
-                _entityTranslateFactoryProvider,
-                _translateFactoryProvider);
+                _entityTranslateFactoryProvider, _translateFactoryProvider, _layoutFormatters.Values);
         }
     }
 }

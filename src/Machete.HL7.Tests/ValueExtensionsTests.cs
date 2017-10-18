@@ -8,7 +8,7 @@
     
     [TestFixture]
     public class ValueExtensionsTests :
-        HL7MacheteTestHarness<TestHL7Entity, HL7Entity>
+        HL7MacheteTestHarness<TestHL7Entity, HL7Entity, HL7Layout>
     {
         [Test]
         public void Verify_ValueOrEmpty_returns_empty_when_field_missing()

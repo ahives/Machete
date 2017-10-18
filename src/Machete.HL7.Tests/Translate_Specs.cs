@@ -8,7 +8,7 @@
 
     [TestFixture]
     public class Using_an_empty_translate :
-        HL7MacheteTestHarness<TestHL7Entity, HL7Entity>
+        HL7MacheteTestHarness<TestHL7Entity, HL7Entity, HL7Layout>
     {
         [Test]
         public async Task Should_simply_match_the_input()
@@ -99,7 +99,7 @@ PID|1|000000000026^^^KNIFE1|60043^^^MACHETE1^MRN~60044^^^MACHETE2^MRN~60045^^^MA
 
     [TestFixture]
     public class Using_a_regular_translate :
-        HL7MacheteTestHarness<TestHL7Entity, HL7Entity>
+        HL7MacheteTestHarness<TestHL7Entity, HL7Entity, HL7Layout>
     {
         [Test]
         public async Task Should_support_value_list_properties()

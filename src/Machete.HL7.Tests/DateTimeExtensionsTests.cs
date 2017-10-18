@@ -8,7 +8,7 @@
 
     [TestFixture]
     public class DateTimeExtensionsTests :
-        HL7MacheteTestHarness<TestHL7Entity, HL7Entity>
+        HL7MacheteTestHarness<TestHL7Entity, HL7Entity, HL7Layout>
     {
         [Test]
         public void Verify_can_convert_DateTime_to_different_time_zone_given_TimeZoneInfo()

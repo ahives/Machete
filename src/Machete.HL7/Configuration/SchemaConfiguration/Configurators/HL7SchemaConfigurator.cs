@@ -6,10 +6,11 @@
     using TypeSelectors;
 
 
-    public class HL7SchemaConfigurator<TSchema> :
-        SchemaConfigurator<TSchema>,
+    public class HL7SchemaConfigurator<TSchema, TLayout> :
+        SchemaConfigurator<TSchema, TLayout>,
         IHL7SchemaConfigurator<TSchema>
         where TSchema : HL7Entity
+        where TLayout : Layout
     {
         public HL7SchemaConfigurator()
             : base(new TrieEntitySelectorFactory(0))

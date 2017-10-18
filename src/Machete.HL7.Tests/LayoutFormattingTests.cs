@@ -9,7 +9,7 @@
 
     [TestFixture]
     public class LayoutFormattingTests :
-        HL7MacheteTestHarness<MSH, HL7Entity>
+        HL7MacheteTestHarness<MSH, HL7Entity, HL7Layout>
     {
         [Test, Explicit]
         public void Should_be_able_to_format_layout()

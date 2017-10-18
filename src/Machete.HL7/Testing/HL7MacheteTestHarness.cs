@@ -4,10 +4,11 @@ namespace Machete.HL7.Testing
     using Machete.Testing;
 
 
-    public class HL7MacheteTestHarness<TVersion, TSchema> :
+    public class HL7MacheteTestHarness<TVersion, TSchema, TLayout> :
         IMacheteTestHarness<TSchema>
         where TSchema : HL7Entity
         where TVersion : TSchema
+        where TLayout : HL7Layout
     {
         static readonly MacheteTestHarness<TSchema> _harness = new Harness();
 
@@ -35,7 +36,7 @@ namespace Machete.HL7.Testing
         {
             protected override ISchema<TSchema> CreateSchema()
             {
-                return Machete.Schema.Factory.CreateHL7<TSchema>(cfg => cfg.AddFromNamespaceContaining<TVersion>());
+                return Machete.Schema.Factory.CreateHL7<TSchema, TLayout>(cfg => cfg.AddFromNamespaceContaining<TVersion>());
             }
 
             protected override IParser<TSchema> CreateParser(ISchema<TSchema> schema)

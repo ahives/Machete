@@ -10,7 +10,7 @@
 
 
     public abstract class LayoutMap<TLayout, TSchema> :
-        ILayoutSpecification<TSchema>
+        ILayoutSpecification<TSchema, TLayout>
         where TLayout : Layout
         where TSchema : Entity
     {
@@ -50,7 +50,7 @@
         {
             var propertyInfo = propertyExpression.GetPropertyInfo();
 
-            var specification = new LayoutLayoutPropertySpecification<TLayout, TSchema, T>(propertyInfo, position);
+            var specification = new LayoutPropertySpecification<TLayout, TSchema, T>(propertyInfo, position);
 
             configure?.Invoke(specification);
 
@@ -82,6 +82,11 @@
         }
 
         public void Apply(ISchemaLayoutBuilder<TSchema> builder)
+        {
+            Specification.Apply(builder);
+        }
+
+        public void Apply(ILayoutFormatterBuilder<TLayout> builder)
         {
             Specification.Apply(builder);
         }

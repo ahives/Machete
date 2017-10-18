@@ -8,7 +8,7 @@
 
     [TestFixture]
     public class AdvancedQueryTests :
-        HL7MacheteTestHarness<MSH, HL7Entity>
+        HL7MacheteTestHarness<MSH, HL7Entity, HL7Layout>
     {
         [Test]
         public void Should_be_able_to_query_order_tests()

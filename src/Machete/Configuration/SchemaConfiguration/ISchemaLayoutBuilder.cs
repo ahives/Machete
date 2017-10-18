@@ -27,6 +27,14 @@
             where T : Layout;
 
         /// <summary>
+        /// Add a layout formatter
+        /// </summary>
+        /// <param name="formatter"></param>
+        /// <typeparam name="T"></typeparam>
+        void Add<T>(ILayoutFormatter<T> formatter)
+            where T : Layout;
+
+        /// <summary>
         /// Specify the translate factory provider to use to build translators
         /// </summary>
         void SetTranslateFactoryProvider(IEntityTranslateFactoryProvider<TSchema> entityTranslateFactoryProvider);

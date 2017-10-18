@@ -15,7 +15,7 @@ namespace Machete.HL7Schema.V26
     {
         public static ISchema<HL7V26Entity> CreateHL7Version26(this ISchemaFactorySelector selector, Action<IHL7SchemaConfigurator<HL7V26Entity>> configure = null)
         {
-            return selector.CreateHL7<HL7V26Entity>(x =>
+            return selector.CreateHL7<HL7V26Entity, HL7V26Layout>(x =>
             {
                 x.AddFromNamespaceContaining<HL7Version26>();
 

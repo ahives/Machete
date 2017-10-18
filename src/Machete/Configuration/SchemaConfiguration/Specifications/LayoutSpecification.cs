@@ -3,12 +3,13 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Xml;
     using Builders;
     using Configuration;
 
 
     public class LayoutSpecification<TLayout, TSchema> :
-        ILayoutSpecification<TSchema>
+        ILayoutSpecification<TSchema, TLayout>
         where TSchema : Entity
         where TLayout : Layout
     {
@@ -18,6 +19,7 @@
         {
             _specifications = new Dictionary<string, ILayoutPropertySpecification<TLayout, TSchema>>();
         }
+        
         public string Name { get; set; }
 
         public void Add(string propertyName, ILayoutPropertySpecification<TLayout, TSchema> specification)
@@ -44,6 +46,11 @@
             var map = entityMapBuilder.Build();
 
             builder.Add(map);
+        }
+
+        public void Apply(ILayoutFormatterBuilder<TLayout> builder)
+        {
+            throw new NotImplementedException();
         }
 
         public IEnumerable<ValidateResult> Validate()

@@ -11,12 +11,12 @@
 
     [TestFixture]
     public class Creating_a_schema :
-        HL7MacheteTestHarness<MSHSegment, HL7Entity>
+        HL7MacheteTestHarness<MSHSegment, HL7Entity, HL7Layout>
     {
         [Test]
         public void Should_use_the_factory_specified()
         {
-            var schema = Machete.Schema.Factory.CreateHL7<HL7Entity>();
+            var schema = Machete.Schema.Factory.CreateHL7<HL7Entity, HL7Layout>();
         }
 
         [Test]

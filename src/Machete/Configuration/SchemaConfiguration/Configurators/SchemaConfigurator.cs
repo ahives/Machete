@@ -12,14 +12,15 @@
     using TypeSelectors;
 
 
-    public class SchemaConfigurator<TSchema> :
+    public class SchemaConfigurator<TSchema, TLayout> :
         ISchemaConfigurator<TSchema>,
-        ISchemaLayoutConfigurator<TSchema>,
+        ISchemaLayoutConfigurator<TSchema, TLayout>,
         ISpecification
         where TSchema : Entity
+        where TLayout : Layout
     {
         readonly IDictionary<Type, ISchemaSpecification<TSchema>> _schemaSpecifications;
-        readonly IDictionary<Type, ILayoutSpecification<TSchema>> _structureSpecifications;
+        readonly IDictionary<Type, ILayoutSpecification<TSchema, TLayout>> _layoutSpecifications;
         readonly IEntitySelectorFactory _entitySelectorFactory;
 
         protected IEntitySelectorFactory EntitySelectorFactory => _entitySelectorFactory;
@@ -29,7 +30,7 @@
             _entitySelectorFactory = entitySelectorFactory;
 
             _schemaSpecifications = new Dictionary<Type, ISchemaSpecification<TSchema>>();
-            _structureSpecifications = new Dictionary<Type, ILayoutSpecification<TSchema>>();
+            _layoutSpecifications = new Dictionary<Type, ILayoutSpecification<TSchema, TLayout>>();
         }
 
         public void Add(ISchemaSpecification<TSchema> specification)
@@ -40,12 +41,12 @@
             _schemaSpecifications.Add(specification.EntityType, specification);
         }
 
-        public void Add(ILayoutSpecification<TSchema> specification)
+        public void Add(ILayoutSpecification<TSchema, TLayout> specification)
         {
             if (specification == null)
                 throw new ArgumentNullException(nameof(specification));
 
-            _structureSpecifications.Add(specification.TemplateType, specification);
+            _layoutSpecifications.Add(specification.TemplateType, specification);
         }
 
         public void AddFromNamespaceContaining<T>()
@@ -78,21 +79,21 @@
         void AddLayoutSpecifications(IEnumerable<Type> namespaceTypes)
         {
             var types = namespaceTypes
-                .Where(x => x.HasInterface<ILayoutSpecification<TSchema>>())
+                .Where(x => x.HasInterface<ILayoutSpecification<TSchema, TLayout>>())
                 .Where(x => x.IsConcrete());
 
             foreach (var type in types)
             {
-                var specification = (ILayoutSpecification<TSchema>) Activator.CreateInstance(type);
+                var specification = (ILayoutSpecification<TSchema, TLayout>) Activator.CreateInstance(type);
 
-                _structureSpecifications.Add(specification.TemplateType, specification);
+                _layoutSpecifications.Add(specification.TemplateType, specification);
             }
         }
 
         public IEnumerable<ValidateResult> Validate()
         {
             return _schemaSpecifications.Values.SelectMany(x => x.Validate())
-                .Concat(_structureSpecifications.Values.SelectMany(x => x.Validate()));
+                .Concat(_layoutSpecifications.Values.SelectMany(x => x.Validate()));
         }
 
         public ISchema<TSchema> Build()
@@ -139,7 +140,7 @@
             var builder = new SchemaLayoutBuilder<TSchema>(schemaBuilder);
 
             var graph = new DependencyGraph<Type>();
-            foreach (var specification in _structureSpecifications)
+            foreach (var specification in _layoutSpecifications)
             {
                 foreach (var layoutType in specification.Value.GetReferencedLayoutTypes())
                 {
@@ -148,9 +149,9 @@
             }
 
             var orderedSpecifications = graph.GetItemsInDependencyOrder()
-                .Concat(_structureSpecifications.Keys)
+                .Concat(_layoutSpecifications.Keys)
                 .Distinct()
-                .Select(type => _structureSpecifications[type]);
+                .Select(type => _layoutSpecifications[type]);
 
             foreach (var specification in orderedSpecifications)
             {

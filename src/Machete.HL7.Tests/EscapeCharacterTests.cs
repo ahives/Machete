@@ -6,7 +6,7 @@
 
     [TestFixture]
     public class EscapeCharacterTests :
-        HL7MacheteTestHarness<ParserTestSegment, HL7Entity>
+        HL7MacheteTestHarness<ParserTestSegment, HL7Entity, HL7Layout>
     {
         [Test]
         public void Should_be_able_to_parse_subcomponent_escape_sequence()

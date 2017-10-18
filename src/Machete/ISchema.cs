@@ -80,14 +80,23 @@
         /// <returns>A concrete type which backs the schema type</returns>
         Type GetImplementationType<T>();
 
+        /// <summary>
+        /// Retrieve the layout formatter for the specified layout type
+        /// </summary>
+        /// <param name="formatter"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
         bool TryGetLayoutFormatter<T>(out ILayoutFormatter<T> formatter)
             where T : Layout;
-    }
 
-
-    public interface ILayoutFormatter<in TLayout>
-        where TLayout : Layout
-    {
-        void Format(FormatContext context, TLayout layout);
+        /// <summary>
+        /// Retrieve the layout formatter for the specified layout type
+        /// </summary>
+        /// <param name="layout"></param>
+        /// <param name="formatter"></param>
+        /// <typeparam name="TLayout"></typeparam>
+        /// <returns></returns>
+        bool TryGetLayoutFormatter<TLayout>(TLayout layout, out ILayoutFormatter formatter)
+            where TLayout : Layout;
     }
 }
