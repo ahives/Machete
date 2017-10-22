@@ -7,7 +7,7 @@
 
     [TestFixture]
     public class NATests :
-        HL7MacheteTestHarness<MSHSegment, HL7Entity>
+        HL7MacheteTestHarness<MSHSegment, HL7Entity, HL7Layout>
     {
         [Test]
         public void Should_be_possible()

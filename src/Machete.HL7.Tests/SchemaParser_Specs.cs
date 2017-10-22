@@ -11,7 +11,7 @@
 
     [TestFixture]
     public class Creating_a_schema :
-        HL7MacheteTestHarness<MSHSegment, HL7Entity>
+        HL7MacheteTestHarness<MSHSegment, HL7Entity, HL7Layout>
     {
         [Test]
         public void Should_use_the_factory_specified()

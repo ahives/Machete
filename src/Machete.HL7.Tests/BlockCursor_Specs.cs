@@ -14,7 +14,7 @@
 
     [TestFixture]
     public class Using_an_async_block_cursor :
-        HL7MacheteTestHarness<MSH, HL7Entity>
+        HL7MacheteTestHarness<MSH, HL7Entity, HL7Layout>
     {
         [Test]
         public async Task Should_navigate_the_blocks_when_crossed()

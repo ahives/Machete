@@ -1,10 +1,9 @@
 ﻿namespace Machete
 {
     using System;
-    using Formatters;
 
 
-    public interface ILayoutFormatter<in TLayout> :
+    public interface ILayoutFormatter<TLayout> :
         ILayoutFormatter
         where TLayout : Layout
     {
@@ -14,6 +13,13 @@
         /// <param name="context"></param>
         /// <param name="layout"></param>
         void Format(FormatContext context, TLayout layout);
+
+        /// <summary>
+        /// Format a list of layouts.
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="layouts"></param>
+        void Format(FormatContext context, LayoutList<TLayout> layouts);
     }
 
 

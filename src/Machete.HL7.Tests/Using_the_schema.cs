@@ -9,7 +9,7 @@
 
     [TestFixture]
     public class Second_schema_user_should_use_static_value :
-        HL7MacheteTestHarness<MSH, HL7Entity>
+        HL7MacheteTestHarness<MSH, HL7Entity, HL7Layout>
     {
         [Test]
         public void Should_create_the_parser()
@@ -21,7 +21,7 @@
 
     [TestFixture]
     public class Using_the_schema :
-        HL7MacheteTestHarness<MSH, HL7Entity>
+        HL7MacheteTestHarness<MSH, HL7Entity, HL7Layout>
     {
         [Test]
         public void Should_create_the_parser()

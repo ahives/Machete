@@ -4,19 +4,20 @@
     using Machete.FormatterConfiguration;
 
 
-    public class X12FormatterConfigurator<TSchema> :
+    public class X12LayoutFormatterConfigurator<TSchema, TLayout> :
         FormatterConfigurator<TSchema>,
         IX12FormatterConfigurator<TSchema>
         where TSchema : X12Entity
+        where TLayout : X12Layout
     {
-        public X12FormatterConfigurator(ISchema<TSchema> schema)
+        public X12LayoutFormatterConfigurator(ISchema<TSchema> schema)
             : base(schema)
         {
         }
 
-        public IFormatter<TSchema> Build()
+        public IFormatter<TSchema, TLayout> Build()
         {
-            return new X12Formatter<TSchema>(Schema);
+            return new X12LayoutFormatter<TSchema, TLayout>(Schema);
         }
     }
 }

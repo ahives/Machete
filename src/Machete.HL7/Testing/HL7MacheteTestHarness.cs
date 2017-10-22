@@ -4,16 +4,18 @@ namespace Machete.HL7.Testing
     using Machete.Testing;
 
 
-    public class HL7MacheteTestHarness<TVersion, TSchema> :
+    public class HL7MacheteTestHarness<TVersion, TSchema, TLayout> :
         IMacheteTestHarness<TSchema>
         where TSchema : HL7Entity
         where TVersion : TSchema
+        where TLayout : HL7Layout
     {
-        static readonly MacheteTestHarness<TSchema> _harness = new Harness();
+        static readonly MacheteTestHarness<TSchema, TLayout> _harness = new Harness();
 
         public ISchema<TSchema> Schema => _harness.Schema;
         public IParser<TSchema> Parser => _harness.Parser;
         public IFormatter<TSchema> Formatter => _harness.Formatter;
+        public IFormatter<TSchema, TLayout> LayoutFormatter => _harness.LayoutFormatter;
 
         public string CleanupText(string text)
         {
@@ -31,7 +33,7 @@ namespace Machete.HL7.Testing
 
 
         class Harness :
-            MacheteTestHarness<TSchema>
+            MacheteTestHarness<TSchema, TLayout>
         {
             protected override ISchema<TSchema> CreateSchema()
             {
@@ -46,6 +48,11 @@ namespace Machete.HL7.Testing
             protected override IFormatter<TSchema> CreateFormatter(ISchema<TSchema> schema)
             {
                 return Machete.Formatter.Factory.CreateHL7(schema);
+            }
+
+            protected override IFormatter<TSchema, TLayout> CreateLayoutFormatter(ISchema<TSchema> schema)
+            {
+                return Machete.Formatter.Factory.CreateHL7<TSchema, TLayout>(schema);
             }
         }
     }

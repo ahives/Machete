@@ -88,5 +88,15 @@
         /// <returns></returns>
         bool TryGetLayoutFormatter<T>(out ILayoutFormatter<T> formatter)
             where T : Layout;
+
+        /// <summary>
+        /// Retrieve a layout formatter for the specified layout type
+        /// </summary>
+        /// <param name="layout"></param>
+        /// <param name="formatter"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        bool TryGetLayoutFormatter<T>(T layout, out ILayoutFormatter formatter)
+            where T : Layout;
     }
 }

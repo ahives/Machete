@@ -295,7 +295,7 @@
             return false;
         }
 
-        
+
         class LayoutFormatScanner :
             IImplementedType
         {

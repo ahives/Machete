@@ -7,7 +7,7 @@
 
     [TestFixture]
     public class Using_a_template :
-        HL7MacheteTestHarness<TestHL7Entity, HL7Entity>
+        HL7MacheteTestHarness<TestHL7Entity, HL7Entity, HL7Layout>
     {
         [Test]
         public void Should_be_possible()

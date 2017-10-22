@@ -4,19 +4,20 @@
     using Machete.FormatterConfiguration;
 
 
-    public class HL7FormatterConfigurator<TSchema> :
+    public class HL7LayoutFormatterConfigurator<TSchema, TLayout> :
         FormatterConfigurator<TSchema>,
         IHL7FormatterConfigurator<TSchema>
         where TSchema : HL7Entity
+        where TLayout : HL7Layout
     {
-        public HL7FormatterConfigurator(ISchema<TSchema> schema)
+        public HL7LayoutFormatterConfigurator(ISchema<TSchema> schema)
             : base(schema)
         {
         }
 
-        public IFormatter<TSchema> Build()
+        public IFormatter<TSchema, TLayout> Build()
         {
-            return new HL7Formatter<TSchema>(Schema);
+            return new HL7LayoutFormatter<TSchema, TLayout>(Schema);
         }
     }
 }

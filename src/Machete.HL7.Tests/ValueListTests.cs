@@ -7,7 +7,7 @@
 
     [TestFixture]
     public class ValueListTests :
-        HL7MacheteTestHarness<TestHL7Entity, HL7Entity>
+        HL7MacheteTestHarness<TestHL7Entity, HL7Entity, HL7Layout>
     {
         [Test]
         public void Should_be_able_to_parse_component_typed_ValueList()

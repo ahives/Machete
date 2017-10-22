@@ -1,21 +1,22 @@
 namespace Machete.X12.Testing
 {
     using System.Linq;
-    using Machete.Formatters;
     using Machete.Testing;
     using X12;
 
 
-    public class X12MacheteTestHarness<TVersion, TSchema> :
+    public class X12MacheteTestHarness<TVersion, TSchema, TLayout> :
         IMacheteTestHarness<TSchema>
         where TSchema : X12Entity
         where TVersion : X12Version
+        where TLayout : X12Layout
     {
-        static readonly MacheteTestHarness<TSchema> _harness = new Harness();
+        static readonly MacheteTestHarness<TSchema, TLayout> _harness = new Harness();
 
         public ISchema<TSchema> Schema => _harness.Schema;
         public IParser<TSchema> Parser => _harness.Parser;
         public IFormatter<TSchema> Formatter => _harness.Formatter;
+        public IFormatter<TSchema, TLayout> LayoutFormatter => _harness.LayoutFormatter;
 
         public string CleanupText(string text)
         {
@@ -33,7 +34,7 @@ namespace Machete.X12.Testing
 
 
         class Harness :
-            MacheteTestHarness<TSchema>
+            MacheteTestHarness<TSchema, TLayout>
         {
             protected override ISchema<TSchema> CreateSchema()
             {
@@ -48,6 +49,11 @@ namespace Machete.X12.Testing
             protected override IFormatter<TSchema> CreateFormatter(ISchema<TSchema> schema)
             {
                 return Machete.Formatter.Factory.CreateX12(schema);
+            }
+
+            protected override IFormatter<TSchema, TLayout> CreateLayoutFormatter(ISchema<TSchema> schema)
+            {
+                return Machete.Formatter.Factory.CreateX12<TSchema, TLayout>(schema);
             }
         }
     }

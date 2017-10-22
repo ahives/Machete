@@ -3,7 +3,7 @@
     public static class Formatter
     {
         /// <summary>
-        /// The factory base for all parsers, to make it easy to discover available parser types.
+        /// The factory base for all formatters to make it easy to discover available formatter types.
         /// </summary>
         public static readonly IFormatterFactorySelector Factory = new UnusedFormatterFactorySelector();
 

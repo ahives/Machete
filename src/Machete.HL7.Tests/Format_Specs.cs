@@ -9,7 +9,7 @@
 
     [TestFixture]
     public class Formatting_an_HL7_segment :
-        HL7MacheteTestHarness<TestHL7Entity, HL7Entity>
+        HL7MacheteTestHarness<TestHL7Entity, HL7Entity, HL7Layout>
     {
         [Test, Explicit]
         public async Task Should_return_the_same_as_the_input()

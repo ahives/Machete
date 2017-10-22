@@ -8,7 +8,7 @@
 
     [TestFixture]
     public class LayoutFormattingTests :
-        HL7MacheteTestHarness<MSH, HL7Entity>
+        HL7MacheteTestHarness<MSH, HL7Entity, HL7Layout>
     {
         [Test, Explicit]
         public void Should_be_able_to_format_layout()
@@ -62,7 +62,7 @@ NTE|2||dsa";
 
             var context = new StringBuilderFormatContext();
 
-            formatter.Format(context, orders[0].Value);
+            formatter.Format(context, orders);
 
             Assert.That(context.ToString(), Is.EqualTo(message));
         }

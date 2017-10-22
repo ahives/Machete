@@ -75,6 +75,7 @@
                 _schemaSpecifications.Add(specification.EntityType, specification);
             }
         }
+        
         void AddLayoutSpecifications(IEnumerable<Type> namespaceTypes)
         {
             var types = namespaceTypes

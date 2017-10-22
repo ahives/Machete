@@ -6,7 +6,7 @@
 
     [TestFixture]
     public class SelectValueExtensionsTests :
-        HL7MacheteTestHarness<TestHL7Entity, HL7Entity>
+        HL7MacheteTestHarness<TestHL7Entity, HL7Entity, HL7Layout>
     {
         [Test]
         public void Verify_Get_can_safely_return_value()
