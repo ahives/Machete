@@ -66,8 +66,6 @@ string patientId = patientIdList[0]
 
 The one common theme of using Select is that you are guaranteed that the returned object is real and not null. Remember, do no harm.
 
-
-
 #### SelectMany
 
 &lt;explain, code sample here&gt;

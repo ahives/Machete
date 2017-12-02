@@ -13,8 +13,6 @@ To define a field, you'll need to answer the following questions:
 
 The answers to these questions will serve to guide you in determining how to define your field, in particular, whether to use [_Value&lt;TValue&gt;_](#value) or [_ValueList&lt;TValue&gt;_](#valuelist) and what type is _TValue_.
 
-
-
 #### Value
 
 A _Value_ can be defined as a property on an entity that is mapped by the schema. When a field is defined as being of type _Value_, it means that the field has a single associated value \(i.e. is not a list\). If you need to mentally map this to your preferred healthcare specification then most specifications would refer to this as not _repeating_.
@@ -44,29 +42,25 @@ So, in the above code snippets, _TValue_, can either be a language primitive \(e
 | string | Yes |  |
 | char | Yes |  |
 | short | Yes |  |
-| ushort | Yes |  |
+| ushort | No | Consider using short |
 | int | Yes |  |
-| uint | Yes |  |
+| uint | No | Consider using int |
 | long | Yes |  |
-| ulong | Yes |  |
+| ulong | No | Consider using long |
 | decimal | Yes |  |
-| float | Yes |  |
-| double | Yes |  |
+| float | No | Consider using decimal |
+| double | No | Consider using decimal |
 | bool | Yes |  |
-| DateTime | Yes | Consider using DateTimeOffset. See the section [Dates and Times](#dates-and-times) |
+| DateTime | Yes | Consider using DateTimeOffset |
 | DateTimeOffset | Yes |  |
 | byte | Yes |  |
 | object | No | Consider using another type |
 | dynamic | No | Consider using another type |
 | Entity | Yes |  |
 
-
-
 #### Dates and Times
 
-Dealing with dates and times can be tricky at times--no pun intended.
-
-
+Dealing with dates and times can be tricky at times--no pun intended. A poorly designed schema can derail the prime directive of Machete's parsing engine, that is, _do no harm_. All data is treated as a string until you instruct Machete to return you a strongly typed value. Unfortunately, when dealing with dates and times there is a way to accidentally destroy data. Imagine that you have defined a field to be of type, _DateTime._ Let's also assume that the data for that field is accompanied with time zone information that serves to put the date and time part into context. When Machete attempts to return a DateTime object it will do so, leaving out the time zone. That's the bad news. The good news is that Machete always keeps a copy of the source data as a string so it is possible to still that data. The other part of this is that we strongly recommend using DateTimeOffset in these situations because it is not destructive.
 
 #### Parting Thoughts
 
