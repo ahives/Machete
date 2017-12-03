@@ -6,8 +6,8 @@ LINQ and other language specific technologies like it were created for the masse
 
 With Machete, we've taken a popular, general purpose technology stack and added some domain specific goodness on top to form what we refer to as LINQ to Schema. LINQ to Schema generically refers to the application of LINQ to the various schemas  defined by Machete. In particular, Machete defines a set of query operators that allow traversal, filter, and projection operations specifically for querying healthcare data. In particular, under the LINQ to Schema umbrella Machete defines the following implementations:
 
-* [LINQ to HL7](/advanced-topics/linq-support/linq-to-hl7.md)
-* [LINQ to X12](/advanced-topics/linq-support/linq-to-x12.md)
+* [LINQ to HL7](/linq-support/linq-to-hl7.md)
+* [LINQ to X12](/linq-support/linq-to-x12.md)
 
 #### Layouts
 
