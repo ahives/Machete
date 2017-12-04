@@ -1,2 +1,2 @@
-Restriction
+Restrictions
 
