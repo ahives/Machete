@@ -60,7 +60,7 @@ var result = await Formatter.FormatToStringAsync(entityResult);
 
 #### Implementing the Singleton Pattern
 
-There is a couple of ways to implement the Singleton pattern in order to expose Core components, that is, you can do it the easy way and let your dependency injection engine do the work for you...
+There are a couple of ways to implement the Singleton pattern in order to expose Core components, that is, you can do it the easy way and let your dependency injection engine do the work for you...
 
 ```csharp
 // Autofac

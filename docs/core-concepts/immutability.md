@@ -1,6 +1,6 @@
 # Immutability
 
-Data fidelity is the most important attribute of healthcare systems. Ironically, most all healthcare parsers expose their specification model through publicly accessible classes and/or properties. Such APIs are arguably simpler to use if you plan on manipulating the parsed data. On the other hand, they are also prone to side effects and are notoriusly more difficult to debug. In the Functional Programming world, this is referred to as _state mutation_. State mutation happens when an object is made mutable and therefore is able to be changed during execution. Let's look at a concrete example of state mutation.
+Data fidelity is the most important attribute of healthcare systems. Ironically, practiaclly all healthcare parsers expose their specification model through publicly accessible classes and/or properties. Such APIs are arguably simpler to use if you plan on manipulating the parsed data. On the other hand, they are also prone to side effects and are notoriusly more difficult to debug. In the Functional Programming world, this is referred to as _state mutation_. State mutation happens when an object is made mutable and therefore is able to be changed during execution. Let's look at a concrete example of state mutation.
 
 ```csharp
 1: var list = new List<int>{1, 5, 2, 4, 3};

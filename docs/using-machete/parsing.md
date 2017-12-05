@@ -1,6 +1,8 @@
 # Parsing
 
-Parsing is considered core functionality in Machete in that everything else stands on its shoulders. Without this service, nothing else matters. That said, Machete has managed to make it pretty painless and simple. To parse a document structure in Machete you need to do the following:
+Parsing is considered core functionality in Machete in that everything else stands on its shoulders. Without this service, nothing else matters. That said, Machete has managed to make it pretty painless and simple. 
+
+To parse a document structure in Machete you need to do the following:
 
 * Initialize the parser
 
