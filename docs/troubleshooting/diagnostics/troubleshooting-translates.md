@@ -1,42 +1,12 @@
-# Translating
+# Troubleshooting Translates
 
-&lt;say something cool here&gt;
+Troubleshooting translates is extremely important because it is the only place in Machete where the developer is allowed to manipulate data. So, you've written your translate and somehow it didn't execute in quite the way you expected. What's next? Well, you could debug the old fashion way and write a unit test and step through the code. But, what if Machete's Translator engine had the ability to return the play-by-play action of what happened in the translate? How power would it be to simply inspect what actually happened in the translate and pinpoint where the problem is? Of course this is useful. You should already know by now that Machete makes it easy to do...
 
 ```csharp
-public class MessageTranslate :
-    HL7TranslateMap<HL7Entity>
-{
-    public MessageTranslation()
-    {
-        Translate<MSH>(x => x.Using<ReplaceSendingApplication>());
-    }
-}
-
-class ReplaceSendingApplication :
-    HL7SegmentTranslateMap<MSH, MSH, HL7Entity>
-{
-    public ReplaceSendingApplication()
-    {
-        Copy(x => x.ReceivingApplication, x => x.SendingApplication);
-        Set(x => x.CreationDateTime, x => DateTimeOffset.UtcNow);
-        Translate(x => x.MessageType, x => x.Using<ReplaceMessageType>());
-    }
-}
-
-class ReplaceMessageType :
-    HL7ComponentTranslateMap<MSG, MSG, HL7Entity>
-{
-    public ReplaceMessageType()
-    {
-        Set(x => x.MessageCode, x => x.Value("ADT"));
-        Set(x => x.TriggerEvent, x => x.Value("A04"));
-    }
-}
+var definition = translator.ToString();
 ```
 
-Debug Info
-
-If you think that its pretty cool being able to have a true translation engine at your disposal, imagine the look on your face when you see this...
+Yep, nothing fancy, that's all there is to it. Call the _ToString_ method on your translator and something like this...
 
 ```
 translate MessageTranslate {
@@ -80,14 +50,5 @@ translate MessageTranslate {
 }
 ```
 
-Oh, that's just a print out from the below code...
-
-```csharp
-var translator = Machete.Schema.CreateTranslator(typeof(MessageTranslate), () => new MessageTranslate());
-
-var definition = translator.ToString();
-
-```
-
-&lt;end&gt;
+The above read out shows what happens on every single field on the target entity. Pretty handy when debugging complex translates, wouldn't you say?
 

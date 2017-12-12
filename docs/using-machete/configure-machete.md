@@ -21,9 +21,9 @@ There are a couple ways to configure Core components within a service:
 ```csharp
 class Program
 {
-    public void Main()
+    static void Main(string[] args)
     {
-        var schema = Machete.Schema.Factory.CreateHL7<HL7Entity>(cfg => cfg.AddFromNamespaceContaining<MSH>());
+        var schema = Machete.Schema.Factory.CreateHL7<HL7Entity>(x => x.AddFromNamespaceContaining<MSH>());
         var parser = Machete.Parser.Factory.CreateHL7(schema);
         var formatter = Machete.Formatter.Factory.CreateHL7(schema);
 
@@ -69,7 +69,7 @@ var builder = new ContainerBuilder();
 builder.RegisterType<RegisterMachetteCore>().As<IRegisterMacheteCore>().SingleInstance();
 ```
 
-...or you can do it the hard way
+...or you can do it the hard way by rolling your own Singleton code like this...
 
 ```csharp
 public sealed class MacheteSingleton

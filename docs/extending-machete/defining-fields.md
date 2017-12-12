@@ -53,6 +53,7 @@ So, in the above code snippets, _TValue_, can either be a language primitive \(e
 | bool | Yes |  |
 | DateTime | Yes | Consider using DateTimeOffset |
 | DateTimeOffset | Yes |  |
+| guid | Yes |  |
 | byte | Yes |  |
 | object | No | Consider using another type |
 | dynamic | No | Consider using another type |

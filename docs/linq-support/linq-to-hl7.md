@@ -28,7 +28,7 @@ DG1|1|I9|788.64^URINARY HESITANCY^I9|URINARY HESITANCY
 
 How would you approach this problem with your current parser? Let me quess, you'd probably write a couple loop statements to iterate over the message and some conditional statements to determine if you have the correct segments and determine when to start grabbing the next block of segments that you need. Am I getting warm? If you've been in healthcare for any length of time, this is just how things are, that is, before Machete.
 
-Imagine if you could write an expressive LINQ query like this...
+Imagine if you could write an expressive, declarative LINQ query like this...
 
 ```csharp
 var result = parse.Query(query =>
