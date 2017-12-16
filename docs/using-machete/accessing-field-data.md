@@ -25,7 +25,7 @@ A parser cannot be 99.999 percent accurate because that 1/100th that it isn't ca
 
 * [Value](#value)
 * [ValueOrDefault](#valueordefault)
-* [TryGetSlice](#trygetslice)
+* [ToString](#tostring)
 
 #### Value
 
@@ -73,26 +73,22 @@ string patientId = result.Select(x => x.PID)
 
 In the above code snippet, we will return a default value, 1000, if the target field cannot be typed appropriately.
 
-#### TryGetSlice
+#### ToString
 
-As you've seen above, the ValueOrDefault method provides an elegant way of typing field data even if said data will cause an application to fault in normal situations. However, there are still scenarios where you simply want to return what was found in the source field no matter if it is garbage or not. _TryGetSlice_ to the rescue. When used properly, TryGetSlice will return the source text without any attempt to type the data. Let's take a look at some code.
+As you've seen above, the ValueOrDefault method provides an elegant way of typing field data even if said data will cause an application to fault in normal situations. However, there are still scenarios where you simply want to return what was found in the source field no matter if it is garbage or not. _ToString_ to the rescue. When used properly, ToString will return the source text without any attempt to type the data. Let's take a look at some code.
 
 ```csharp
-result.Select(x => x.PID).Select(x => x.PatientId).Slice.TryGetSlice(2, out TextSlice slice);
-
-string patientIdField = slice.Text.ToString();
+string patientIdField = result.Select(x => x.PID).Select(x => x.PatientId).ToString();
 ```
 
 Given the HL7 fragment up top, the above code will return the value "09823^^^^^^^abc". Pretty cool, huh? But, you want to go deeper, right? Let me guess, you want to get at the data that is inside the CX entity, right? Here is how you would do that...
 
 ```csharp
-result.Select(x => x.PID)
+string expirationDate = result
+        .Select(x => x.PID)
         .Select(x => x.PatientId)
         .Select(x => x.ExpirationDate)
-        .Slice
-        .TryGetSlice(7, out TextSlice slice);
-
-string expirationDate = slice.Text.ToString();
+        .ToString();
 ```
 
 In this case you specify the index you are trying to parse, which in the example is CX-8 \(remember the entity is zero-based\). The above code snippet will return the value "abc", which according to the schema definition this would be the ExpirationDate field.
