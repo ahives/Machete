@@ -5,39 +5,22 @@ Think of an entity map as a set of instructions to the parser, informing it when
 Let's jump into some code...
 
 ```csharp
-public class MSHMap :
-    HL7V26SegmentMap<MSH>
+public class MacheteEntityMap :
+    HL7V26SegmentMap<MacheteEntity>
 {
-    public MSHMap()
+    public MacheteEntityMap()
     {
-        Id = "MSH";
+        Id = "MM1";
 
-        Name = "Message Header";
+        Name = "Machete Segment";
 
-        Value(x => x.EncodingCharacters, 1, x => {x.Required = true;});
-        Entity(x => x.SendingApplication, 2);
-        Entity(x => x.SendingFacility, 3);
-        Entity(x => x.ReceivingApplication, 4);
-        Entity(x => x.ReceivingFacility, 5);
-        Value(x => x.DateTimeOfMessage, 6, x => {x.Converter = HL7.HL7ValueConverters.VariableLongDateTime;x.Required = true;});
-        Value(x => x.Security, 7);
-        Entity(x => x.MessageType, 8, x => {x.Required = true;});
-        Value(x => x.MessageControlId, 9, x => {x.Required = true;});
-        Entity(x => x.ProcessingId, 10, x => {x.Required = true;});
-        Entity(x => x.VersionId, 11, x => {x.Required = true;});
-        Value(x => x.SequenceNumber, 12);
-        Value(x => x.ContinuationPointer, 13);
-        Value(x => x.AcceptAcknowledgmentType, 14);
-        Value(x => x.ApplicationAcknowledgmentType, 15);
-        Value(x => x.CountryCode, 16);
-        Value(x => x.CharacterSet, 17);
-        Entity(x => x.PrincipalLanguageOfMessage, 18);
-        Value(x => x.AlternateCharacterSetHandlingScheme, 19);
-        Entity(x => x.MessageProfileIdentifier, 20);
-        Entity(x => x.SendingResponsibleOrganization, 21);
-        Entity(x => x.ReceivingResponsibleOrganization, 22);
-        Entity(x => x.SendingNetworkAddress, 23);
-        Entity(x => x.ReceivingNetworkAddress, 24);
+        Value(x => x.SimpleField, 1, x => {x.Required = true;});
+        Entity(x => x.ComplexField, 2);
+        Value(x => x.DateTimeOfMessage, 3, x =>
+            {
+                x.Converter = HL7ValueConverters.VariableLongDateTime;
+                x.Required = true;
+            });
     }
 }
 ```
@@ -57,7 +40,7 @@ To best understand this, imagine if you were a parser's perspective; you been in
 ```
 MSH|^~\&|MACHETELAB|^DOSC|MACHETE|18779|20130405125146269||ORM^O01|1999077678|P|2.3|||AL|AL
 PID|1|000000000026|60043^^^MACHETE^MRN||MACHETE^JOE||19890909|F|||123 SEASAME STREET^^Oakland^CA^94600||5101234567|5101234567||||||||||||||||N
-PD1|M|F|N||||F|
+MM1|Something Important|60043^^^MACHETE^MRN|20171225
 PV1|1|O|||||92383^Machete^Janice||||||||||||12345|||||||||||||||||||||||||201304051104
 PV2||||||||20150615|20150616|1||||||||||||||||||||||||||N
 IN1|1|||MACHETE INC|1234 Fruitvale ave^^Oakland^CA^94601^USA||5101234567^^^^^510^1234567|074394|||||||A1|MACHETE^JOE||19890909|123 SEASAME STREET^^Oakland^CA^94600||||||||||||N|||||666889999|0||||||F||||T||60043^^^MACHETE^MRN

@@ -7,11 +7,12 @@
   * [Why Machete?](philosophy/why-machete.md)
   * [Looking Back, Moving Foward](philosophy/looking-back-moving-foward.md)
 * [Core Concepts](core-concepts/README.md)
-  * [Query Theory](core-concepts/query-theory.md)
-  * [Parsing Theory](core-concepts/parsing-theory.md)
+  * [Text Processing Pipeline](core-concepts/text-processing-pipeline.md)
+  * [Querying Document Structures](core-concepts/query-theory.md)
+  * [Parsing Data](core-concepts/parsing-theory.md)
+  * [Lazy Text Evaluation](core-concepts/lazy-text-evaluation.md)
   * [Immutability](core-concepts/immutability.md)
   * [Schema](core-concepts/schema.md)
-  * [Lazy Text Evaluation](core-concepts/lazy-text-evaluation.md)
 * [Quick Start!](quick-start.md)
 
 ## USAGE
@@ -40,12 +41,18 @@
 * [Extending Machete](extending-machete/README.md)
   * [Defining Entities](extending-machete/defining-entities.md)
   * [Defining Fields](extending-machete/defining-fields.md)
-  * [Defining Layouts](extending-machete/defining-layouts.md)
   * [Defining Entity Maps](extending-machete/defining-entity-maps.md)
+  * [Defining Layouts](extending-machete/defining-layouts.md)
+  * [Defining Value Converters](extending-machete/defining-value-converters.md)
+* [Advance Querying](advance-querying/README.md)
+  * [OR-ing Entities](advance-querying/or-ing-entities.md)
+  * [Skipping Entities](advance-querying/skipping-entities.md)
+  * [Taking Entities](advance-querying/taking-entities.md)
 
 ## Troubleshooting
 
-* [Common Gotchas](troubleshooting/common-gotchas.md)
+* [Common Gotchas](common-gotchas/README.md)
+  * [Handling Dates & Times](common-gotchas/handling-dates-and-times.md)
 * [Diagnostics](troubleshooting/diagnostics.md)
-  * [Troubleshooting Translates](troubleshooting/diagnostics/troubleshooting-translates.md)
+  * [Troubleshooting Translates](diagnostics/troubleshooting-translates.md)
 

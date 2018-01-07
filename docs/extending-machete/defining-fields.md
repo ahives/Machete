@@ -40,7 +40,7 @@ So, in the above code snippets, _TValue_, can either be a language primitive \(e
 | Type | Machete Support | Notes |
 | :--- | :--- | :--- |
 | string | Yes |  |
-| char | Yes |  |
+| char | No | Consider using string |
 | short | Yes |  |
 | ushort | No | Consider using short |
 | int | Yes |  |
@@ -59,11 +59,9 @@ So, in the above code snippets, _TValue_, can either be a language primitive \(e
 | dynamic | No | Consider using another type |
 | Entity | Yes |  |
 
-#### Dates and Times
+#### 
 
-Dealing with dates and times can be tricky at times--no pun intended. A poorly designed schema can derail the prime directive of Machete's parsing engine, that is, _do no harm_. All data is treated as a string until you instruct Machete to return you a strongly typed value. Unfortunately, when dealing with dates and times there is a way to accidentally destroy data. Imagine that you have defined a field to be of type, _DateTime._ Let's also assume that the data for that field is accompanied with time zone information that serves to put the date and time part into context. When Machete attempts to return a DateTime object it will do so, leaving out the time zone. That's the bad news. The good news is that Machete always keeps a copy of the source data as a string so it is possible to still that data. The other part of this is that we strongly recommend using DateTimeOffset in these situations because it is not destructive.
-
-#### Parting Thoughts
+#### Why be unconventional?
 
 I know what you're thinking, why not define entity fields like the rest of the world would do it, you know, like this...
 
