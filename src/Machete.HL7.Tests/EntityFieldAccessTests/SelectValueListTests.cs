@@ -47,7 +47,29 @@ PID|1|000000000026^^^KNIFE1|60043^^^MACHETE1^MRN~60044^^^MACHETE2^MRN~60045^^^MA
         }
 
         [Test]
-        public void Should_be_able_to_parse_primitive_typed_ValueList()
+        public void Should_be_able_to_parse_simple_list()
+        {
+            const string message = @"MSH|^~\&|LIFTLAB||MACHETE||201701131234||ORU^R01|K113|P|
+VL1|ABC~XYZ~123|ABC~XYZ~123";
+
+            ParseResult<HL7Entity> parsed = Parser.Parse(message);
+
+            var query = parsed.CreateQuery(q =>
+                from msh in q.Select<MSHSegment>()
+                from vl1 in q.Select<ValueListSegment>()
+                select vl1);
+
+            var result = parsed.Query(query);
+
+            var simpleValue = result.Select(x => x.RepeatedString)[0];
+
+            Assert.IsTrue(result.HasResult);
+            Assert.IsNotNull(simpleValue);
+            Assert.AreEqual("ABC", simpleValue.ValueOrDefault());
+        }
+
+        [Test]
+        public void Should_be_able_to_parse_complex_list()
         {
             const string message1 = @"MSH|^~\&|LIFTLAB||MACHETE||201701131234||ORU^R01|K113|P|
 VL1|ABC~XYZ~123|ABC~XYZ~123";
@@ -60,16 +82,14 @@ VL1|ABC~XYZ~123|ABC~XYZ~123";
                 select vl1);
 
             var result = parsed.Query(query);
-
-            string actual = result.Select(x => x.RepeatedString)[0].ValueOrDefault();
-
-            Assert.AreEqual("ABC", actual);
-            Assert.That(result.Select(x => x.RepeatedComplexType)[0], Is.Not.Null);
-            Assert.That(result.Select(x => x.RepeatedComplexType)[0].HasValue, Is.True);
-
-            string actualId = result.Select(x => x.RepeatedComplexType[0]).Select(x => x.IdNumber).ValueOrDefault();
-
-            Assert.AreEqual("ABC", actualId);
+            
+            Assert.IsTrue(result.HasResult);
+            
+            var complexValue = result.Select(x => x.RepeatedComplexType)[0];
+            
+            Assert.IsNotNull(complexValue);
+            Assert.IsTrue(complexValue.HasValue);
+            Assert.AreEqual("ABC", complexValue.Select(x => x.IdNumber).ValueOrDefault());
         }
 
         [Test]
