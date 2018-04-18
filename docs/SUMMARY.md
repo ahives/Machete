@@ -48,6 +48,9 @@
   * [OR-ing Entities](advance-querying/or-ing-entities.md)
   * [Skipping Entities](advance-querying/skipping-entities.md)
   * [Taking Entities](advance-querying/taking-entities.md)
+* [Array-based Parsing](array-based-parsing/README.md)
+  * [Entity Parsing](array-based-parsing/entity-parsing.md)
+  * [Text Parsing](array-based-parsing/text-parsing.md)
 
 ## Troubleshooting
 

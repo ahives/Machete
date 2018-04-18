@@ -14,12 +14,12 @@ public class MacheteEntityMap :
 
         Name = "Machete Segment";
 
-        Value(x => x.SimpleField, 1, x => {x.Required = true;});
+        Value(x => x.SimpleField, 1, x => x.IsRequired());
         Entity(x => x.ComplexField, 2);
         Value(x => x.DateTimeOfMessage, 3, x =>
             {
                 x.Converter = HL7ValueConverters.VariableLongDateTime;
-                x.Required = true;
+                x.IsRequired();
             });
     }
 }
@@ -63,7 +63,7 @@ OBX|1||URST^Urine Specimen Type^^^||URN
 So after some inspection of the above HL7, you've now found a match. The next thing you'll need to know is how to map the data you've found back into object form and pass to your eventual caller. So, here is the million dollar question, how would you be able to perform this task without knowing how the data correlates to the object? Hmm, you'd probably need a way to define how the data maps back to the object, otherwise, it would be pointless to parse the message in the first place. Now you see why entity maps are so important. Now, let's breakdown some code shall we. The below code snippet is a simple example of how mapping in Machete is done.
 
 ```csharp
-Value(x => x.EncodingCharacters, 1, x => {x.Required = true;});
+Value(x => x.EncodingCharacters, 1, x => x.IsRequired());
 ```
 
 No matter if the field happens to be complex or primitive, there are three important bits of information that must be captured in order to define how the parser execute most efficiently:
@@ -72,5 +72,11 @@ No matter if the field happens to be complex or primitive, there are three impor
 2. Relative position of the delimited data field to the entity's definition
 3. Instructions on how to handle parsing the field \(e.g. is data required to be present, how to convert the raw string data upon mapping\)
 
+One last thing, you'll notice that index of first field defined in the map always starts at index 1. This is only the case when defining segments like the above HL7. This makes perfect sense because the segment ID \(e.g. MSH, PID, etc.\) is actually the very first bit of data you encounter on each line starting at index 0. The caveat to this, however, is when defining complex fields. Take a look at the below HL7 snippet.
 
+```
+PID|1|000000000026|60043^^^MACHETE^MRN|...
+```
+
+Notice that the PID-3 field above is complex, whereby, the field is made up of a mix of several primitive \(e.g. string\) and complex \(e.g. HD, CWE, etc.\) data types. In such a scenario, the corresponding map for so-called sub-entities would start from index 0 since there is no segment ID like in the case of a segment.
 

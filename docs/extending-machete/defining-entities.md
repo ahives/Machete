@@ -14,7 +14,7 @@ Let's dissect the above pseudo code a bit. There are five attributes to be aware
 
 1. An entity is [immutable](/core-concepts/immutability.md), therefore, it must be defined as a contract \(i.e. interface\) without implementation details 
 2. An entity must inherit directly or indirectly from the Machete _Entity_ interface
-3. Fields \(i.e. programming language properties\) within an entity must be read only and are defined by using either [_Value_](/extending-machete/defining-fields.md) or [_ValueList_](/extending-machete/defining-fields.md)
+3. Fields \(i.e. programming language properties\) within an entity must be read only \(i.e. public getter properties\) and are defined by using either [_Value_](/extending-machete/defining-fields.md) or [_ValueList_](/extending-machete/defining-fields.md)
 4. There are no limits to how many fields one can define within an entity
 5. There is no particular order in which fields \(i.e. programming language properties\) are defined within an entity definition interface
 

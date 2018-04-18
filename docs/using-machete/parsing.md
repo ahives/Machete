@@ -5,14 +5,14 @@ Parsing is considered core functionality in Machete in that everything else stan
 * Initialize the parser
 
 ```csharp
-var schema = Machete.Schema.Factory.CreateHL7<HL7Entity>(cfg => cfg.AddFromNamespaceContaining<MSH>());
-var parser = Machete.Parser.Factory.CreateHL7(schema);
+var schema = Machete.Schema.Factory.CreateX12<X12Entity>(cfg => cfg.AddFromNamespaceContaining<ISA>());
+var parser = Machete.Parser.Factory.CreateX12(schema);
 ```
 
 * Parse the document structure
 
 ```csharp
-EntityResult<HL7Entity> parse = parser.Parse(message);
+EntityResult<X12Entity> parse = parser.Parse(message);
 ```
 
 But, as simple as the above code may look, there is a significant amount of magic going on under the hood. First, let's get a few things straight starting with the use of the word _parser_ itself. _Parser_ is a somewhat loaded word since Machete employs several parsers to perform the task of parsing what we refer to generically as a document structures \(e.g. message, document, etc.\). Each parser performs a very specific job.
@@ -27,21 +27,5 @@ After parsing the document structure, you have several choices as to what you ca
 * Validate the document structure
 * [Query the document structure](/using-machete/querying-document-structures.md)
 
-In other words, everything in Machete that enables one to perform work on a document structure begins with parsing. While building Machete, we understood day one that there will be different use cases with even something so core as parsing that we enable you to parse in different ways to fulfill said use cases.
-
-#### Text Parsing
-
-...or it can take the form of simply calling the _TryGetEntity_ method directly off of the returned object like so...
-
-```csharp
-bool foundSegment = parse.TryGetEntity(0, out MSH msh);
-```
-
-#### Entity Parsing
-
-&lt;explain, code here&gt;
-
-#### Stream Parsing
-
-&lt;explain, code here&gt;
+In other words, everything in Machete that enables one to perform work on a document structure begins with parsing. While building Machete, we understood day one that there will be different use cases even with something so core as parsing that we enable you to parse in different ways to fulfill said use cases.
 
