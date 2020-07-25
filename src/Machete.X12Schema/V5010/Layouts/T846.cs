@@ -1,6 +1,5 @@
 namespace Machete.X12Schema.V5010
 {
-    using Segments;
     using X12;
 
 
@@ -11,7 +10,7 @@ namespace Machete.X12Schema.V5010
 
         Segment<ST> TransactionSetHeader { get; }
 
-        Segment<BIA> BeginningSegmentForInventoryInvoice { get; }
+        Segment<BIA> BeginningInventoryInvoice { get; }
 
         Segment<CUR> Currency { get; }
 
