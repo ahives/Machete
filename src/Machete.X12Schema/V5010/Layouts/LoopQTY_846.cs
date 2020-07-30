@@ -3,13 +3,17 @@ namespace Machete.X12Schema.V5010
     using X12;
 
 
-    public interface LoopQty_846 :
+    public interface LoopQTY_846 :
         X12Layout
     {
         Segment<QTY> QuantityInformation { get; }
+        
         Segment<UIT> UnitDetail { get; }
+        
         Segment<MEA> Measurements { get; }
+        
         Segment<LDT> LeadTime { get; }
+        
         Segment<DTM> DateTimeReference { get; }
 
         LayoutList<LoopSCH_846> LoopSCH { get; }
