@@ -14,7 +14,7 @@ namespace Machete.X12Schema.V5010
         
         Segment<LDT> LeadTime { get; }
         
-        Segment<DTM> DateTimeReference { get; }
+        Segment<DTM> DateOrTimeReference { get; }
 
         LayoutList<LoopSCH_846> LoopSCH { get; }
         

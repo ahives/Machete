@@ -15,8 +15,8 @@ namespace Machete.X12Schema.V5010.Maps
             Segment(x => x.SublineItemDetail, 0);
             Segment(x => x.ItemDescription, 1);
             Segment(x => x.Measurements, 2);
-            Segment(x => x.MarkingPackagingLoading, 3);
-            Layout(x => x.LoopMAN_846, 4);
+            Segment(x => x.MarkingPackagingOrLoading, 3);
+            Layout(x => x.LoopMAN, 4);
         }
     }
 }

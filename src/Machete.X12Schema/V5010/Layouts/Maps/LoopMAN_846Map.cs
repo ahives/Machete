@@ -13,6 +13,7 @@ namespace Machete.X12Schema.V5010.Maps
             Name = "Loop MAN";
             
             Segment(x => x.MarksAndNumberInformation, 0);
+
             Segment(x => x.Measurements, 1);
         }
     }

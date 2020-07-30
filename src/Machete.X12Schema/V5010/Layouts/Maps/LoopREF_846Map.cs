@@ -13,7 +13,7 @@ namespace Machete.X12Schema.V5010.Maps
             Name = "Loop REF";
             
             Segment(x => x.ReferenceInformation, 0);
-            Segment(x => x.DateTimeReference, 1);
+            Segment(x => x.DateOrTimeReference, 1);
             Segment(x => x.PartyInformation, 2);
             Layout(x => x.LoopLM, 3);
         }

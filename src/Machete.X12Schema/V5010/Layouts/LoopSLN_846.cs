@@ -12,8 +12,8 @@ namespace Machete.X12Schema.V5010
         
         Segment<MEA> Measurements { get; }
         
-        Segment<PKG> MarkingPackagingLoading { get; }
+        Segment<PKG> MarkingPackagingOrLoading { get; }
         
-        LayoutList<LoopMAN_846> LoopMAN_846 { get; }
+        LayoutList<LoopMAN_846> LoopMAN { get; }
     }
 }

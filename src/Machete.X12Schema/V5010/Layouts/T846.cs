@@ -14,7 +14,7 @@ namespace Machete.X12Schema.V5010
 
         Segment<CUR> Currency { get; }
 
-        SegmentList<DTM> DateTimeReference { get; }
+        SegmentList<DTM> DateOrTimeReference { get; }
 
         SegmentList<REF> ReferenceInformation { get; }
 

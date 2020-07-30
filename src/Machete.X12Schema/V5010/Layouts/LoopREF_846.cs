@@ -8,7 +8,7 @@ namespace Machete.X12Schema.V5010
     {
         Segment<REF> ReferenceInformation { get; }
         
-        Segment<DTM> DateTimeReference { get; }
+        Segment<DTM> DateOrTimeReference { get; }
         
         Segment<N1> PartyInformation { get;  }
         

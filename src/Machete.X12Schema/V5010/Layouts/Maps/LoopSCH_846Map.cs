@@ -11,7 +11,9 @@ namespace Machete.X12Schema.V5010.Maps
         {
             Id = "Loop_SCH_846";
             Name = "Loop SCH";
+            
             Segment(x => x.LineItemSchedule, 0);
+
             Segment(x => x.Measurements, 1);
         }
     }

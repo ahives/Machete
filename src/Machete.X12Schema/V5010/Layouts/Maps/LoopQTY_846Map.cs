@@ -16,7 +16,7 @@ namespace Machete.X12Schema.V5010.Maps
             Segment(x => x.UnitDetail, 1);
             Segment(x => x.Measurements, 2);
             Segment(x => x.LeadTime, 3);
-            Segment(x => x.DateTimeReference, 4);
+            Segment(x => x.DateOrTimeReference, 4);
             Layout(x => x.LoopSCH, 5);
             Layout(x => x.LoopLM, 6);
             Segment(x => x.LoopHeader, 7);
