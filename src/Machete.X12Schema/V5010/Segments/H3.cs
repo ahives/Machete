@@ -14,6 +14,6 @@ namespace Machete.X12Schema.V5010
         
         Value<string> VentInstructionCode { get; }
         
-        Value<string> TariffApplicationCode { get; }
+        Value<int> TariffApplicationCode { get; }
     }
 }
