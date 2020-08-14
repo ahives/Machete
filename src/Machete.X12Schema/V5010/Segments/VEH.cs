@@ -6,7 +6,7 @@ namespace Machete.X12Schema.V5010
     public interface VEH :
         X12Segment
     {
-        Value<int> AssignedNumber { get; }
+        Value<int> NumberAssigned { get; }
         
         Value<string> VehicleIdentificationNumber { get; }
         
@@ -14,34 +14,40 @@ namespace Machete.X12Schema.V5010
         
         Value<string> AgencyQualifierCode { get; }
         
-        Value<string> ReferenceIdentification1 { get; }
+        Value<string> ReferenceIdentification05 { get; }
         
-        Value<string> ReferenceIdentification2 { get; }
+        Value<string> ReferenceIdentification06 { get; }
         
-        Value<string> ReferenceIdentification3 { get; }
+        Value<string> ReferenceIdentification07 { get; }
         
         Value<decimal> Length { get; }
         
-        Value<string> ReferenceIdentification4 { get; }
+        Value<string> ReferenceIdentification09 { get; }
         
         Value<string> StateOrProvinceCode { get; }
         
         Value<string> LocationIdentifier { get; }
         
-        Value<string> YesOrNoResponseCode1 { get; }
+        Value<string> YesNoCondition { get; }
         
-        Value<decimal> Amount1 { get; }
-        
-        Value<string> YesOrNoResponseCode2 { get; }
-        
-        Value<decimal> Amount2 { get; }
+        Value<decimal> Amount { get; }
         
         Value<string> ActionCode { get; }
         
-        Value<string> CountryCode1 { get; }
+        Value<string> YesNoCondition12 { get; }
+        
+        Value<decimal> Amount13 { get; }
+        
+        Value<string> YesNoCondition14 { get; }
+        
+        Value<decimal> Amount15 { get; }
+        
+        Value<string> ActionCode16 { get; }
+        
+        Value<string> CountryCode17 { get; }
         
         Value<string> Name { get; }
         
-        Value<string> CountryCode2 { get; }
+        Value<string> CountryCode19 { get; }
     }
 }
