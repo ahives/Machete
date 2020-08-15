@@ -32,5 +32,7 @@ namespace Machete.X12Schema.V5010.Maps
             Value(x => x.Name, 18, x => x.MinLength(1).MaxLength(60));
             Value(x => x.CountryCode2, 19, x => x.MinLength(2).MaxLength(3));
         }
+        
+        // TODO
     }
 }
