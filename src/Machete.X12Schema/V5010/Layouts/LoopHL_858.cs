@@ -24,7 +24,7 @@ namespace Machete.X12Schema.V5010
         
         Segment<L7> TariffReference { get; }
         
-        Segment<SL1> TariffDetails { get; }
+        Segment<SLI> TariffDetails { get; }
         
         Segment<N9> ExtendedReferenceInformation { get; }
         
