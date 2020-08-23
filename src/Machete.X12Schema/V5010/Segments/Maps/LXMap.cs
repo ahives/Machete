@@ -3,7 +3,7 @@ namespace Machete.X12Schema.V5010.Maps
     using X12;
     using X12.Configuration;
 
-    
+
     public class LXMap :
         X12SegmentMap<LX, X12Entity>
     {
@@ -11,7 +11,7 @@ namespace Machete.X12Schema.V5010.Maps
         {
             Id = "LX";
             Name = "Assigned Number";
-            
+
             Value(x => x.NumberAssigned, 1, x => x.MinLength(1).MaxLength(6).IsRequired());
         }
     }

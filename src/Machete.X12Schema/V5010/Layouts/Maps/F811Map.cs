@@ -4,14 +4,14 @@ namespace Machete.X12Schema.V5010.Maps
     using X12.Configuration;
 
 
-    public class F820Map :
-        X12LayoutMap<F820, X12Entity>
+    public class F811Map :
+        X12LayoutMap<F811, X12Entity>
     {
-        public F820Map()
+        public F811Map()
         {
-            Id = "F820";
-            Name = "820 Payment Order/Remittance Advice";
-
+            Id = "F811";
+            Name = "811 - Consolidated Service Invoice/Statement";
+            
             Segment(x => x.InterchangeControlHeader, 0);
             Layout(x => x.Transaction, 1);
             Segment(x => x.InterchangeControlTrailer, 2);

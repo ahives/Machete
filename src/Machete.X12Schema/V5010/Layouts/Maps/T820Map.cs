@@ -11,7 +11,7 @@ namespace Machete.X12Schema.V5010.Maps
         {
             Id = "T828";
             Name = "828 Debit Authorization";
-            
+
             Segment(x => x.FunctionalGroupHeader, 0);
             Segment(x => x.TransactionSetHeader, 1);
             Segment(x => x.BeginningPaymentOrderOrRemittanceAdvice, 2);
