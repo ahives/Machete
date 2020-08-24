@@ -3,7 +3,7 @@ namespace Machete.X12Schema.V5010
     using X12;
 
 
-    public interface LoopNM1_811 :
+    public interface LoopSLN_NM1_811 :
         X12Layout
     {
         Segment<NM1> IndividualOrOrganizationName { get; }
@@ -18,8 +18,6 @@ namespace Machete.X12Schema.V5010
 
         SegmentList<PER> AdministrativeCommunicationsContact { get; }
 
-        SegmentList<TXI> TaxInformation { get; }
-
-        SegmentList<DMG> DemographicInformation { get;  }
+        SegmentList<DMG> DemographicInformation { get; }
     }
 }

@@ -15,5 +15,15 @@ namespace Machete.X12Schema.V5010
         LayoutList<LoopITA_1_811> LoopITA { get; }
 
         LayoutList<LoopIT1_811> LoopIT1 { get; }
+
+        LayoutList<LoopSLN_811> LoopSLN { get; }
+
+        LayoutList<LoopTCD_811> LoopTCD { get; }
+
+        LayoutList<LoopUSD_811> LoopUSD { get; }
+
+        LayoutList<LoopIII_811> LoopIII { get; }
+
+        LayoutList<LoopFA1_811> LoopFA1 { get; }
     }
 }
