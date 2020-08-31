@@ -14,7 +14,7 @@ namespace Machete.X12Schema.V5010.Maps
 
             Segment(x => x.FormGroup, 0);
             Segment(x => x.ReferenceInformation, 1);
-            Segment(x => x.DateTimeReference, 2);
+            Segment(x => x.DateOrTimeReference, 2);
             Layout(x => x.LoopN1, 3);
             Layout(x => x.LoopTIA, 4);
         }

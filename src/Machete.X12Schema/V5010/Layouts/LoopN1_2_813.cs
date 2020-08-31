@@ -14,6 +14,6 @@ namespace Machete.X12Schema.V5010
 
         SegmentList<N3> PartyLocation { get; }
 
-        Segment<N4> GeographicInformation { get; }        
+        Segment<N4> GeographicLocation { get; }
     }
 }

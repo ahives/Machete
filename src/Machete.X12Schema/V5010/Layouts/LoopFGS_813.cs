@@ -10,10 +10,10 @@ namespace Machete.X12Schema.V5010
 
         SegmentList<REF> ReferenceInformation { get; }
 
-        SegmentList<DTM> DateTimeReference { get; }
+        SegmentList<DTM> DateOrTimeReference { get; }
 
-        LayoutList<LoopN1_3_813> LoopN1 { get; }
+        LayoutList<LoopN1_2_813> LoopN1 { get; }
 
-        LayoutList<LoopTIA_2_813> LoopTIA { get; }
+        LayoutList<LoopTIA_813> LoopTIA { get; }
     }
 }
